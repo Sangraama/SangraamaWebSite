@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>සංග්‍රාම - Distributed Coordination Architecture for
+	MMOGs</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="css/docs.css" rel="stylesheet">
+<link href="js/google-code-prettify/prettify.css" rel="stylesheet">
+<link>
+</head>
+<body data-spy="scroll" data-target=".bs-docs-sidebar">
+	<!-- Navigation Bar
+     ========================== -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="brand" href="./index.html"> සංග්‍රාම </a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class="active divider-vertical"><a href="./index.html">Home</a></li>
+						<li class="dropdown"><a data-toggle="dropdown"
+							class="dropdown-toggle" href="./wiki.html">Wiki <b
+								class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="./documentation.html#p2p">Peer-to-Peer</a></li>
+								<li><a href="./documentation.html#decentralizedCS">Decentralized
+										Client/Server</a></li>
+								<li class="divider"></li>
+								<li><a href="./documentation.html"> Documentation </a></li>
+							</ul></li>
+						<li class="divider-vertical"><a href="./blog.html"> Blog
+						</a></li>
+						<li class="divider-vertical"><a href="./resource.html">
+								Resources </a></li>
+						<li class="divider-vertical"><a href="./download.html">
+								Download</a></li>
+						<li class="divider-vertical"><a href="./publication.html">
+								Publication </a></li>
+						<li class="divider-vertical"><a href="./community.html">
+								Community </a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Subhead
+================================================== -->
+	<header class="jumbotron subhead">
+	<div class="container">
+		<h1>
+			<em> සංග්‍රාම </em>
+		</h1>
+		<p class="lead">Documentations and Architectures of MMOGs
+	</div>
+	</header>
+
+	<!-- community container
+================================================== -->
+	<div class="container">
+
+		<div class="row">
+			<div class="span3 bs-docs-sidebar">
+				<ul class="nav nav-list bs-docs-sidenav">
+					<li class="nav-header"
+						style="margin-left: -5px; padding: 2px 20px; font: 12px;">Peer-to-Peer</li>
+					<li><a href="#p2p"><i class="icon-chevron-right"></i>
+							Pure P2P</a></li>
+
+					<li class="nav-header"
+						style="margin-left: -5px; padding: 2px 20px; font: 12px;">Decentralized
+						Client/Server</li>
+					<li><a href="#decentralizedCS"><i class="icon-chevron-right"></i>
+							Decentralized C/S</a></li>
+
+					<li class="nav-header"
+						style="margin-left: -5px; padding: 2px 20px; font: 12px;">Documentation</li>
+					<li><a href="#overview"><i class="icon-chevron-right"></i>Overview</a></li>
+				</ul>
+			</div>
+			<div class="span9">
+				<!-- P2P overview 
+      =========================================== -->
+				<section id="p2p">
+				<div class="page-header">
+					<h2>
+						Peer-to-Peer Architecture <small>Overview</small>
+					</h2>
+					<p>P2P topologies can be divided into two categories:
+					<ul>
+						<li>Pure</li>
+						<li>Hybrid</li>
+					</ul>
+					A pure P2P network has no central servers, and all clients store a
+					part of the service content and essentially act as both a client
+					and a server. In a hybrid P2P network a central server manages the
+					network, and keeps track of who is part of it and what content each
+					client has stored. Also clients can be classified in a hierarchy.
+					Using pure P2P solution in an MMOG would cause three critical
+					problems:
+					<ul>
+						<li>The game network could risk getting split up in smaller
+							network, lose parts of the game state or dissolve entirely.</li>
+						<li>The clients would have no main point of connection, and
+							hence have no stable way of connecting to the game.</li>
+						<li>The game would have no means of a central authority,
+							meaning any client would have potential to cheat.</li>
+					</ul>
+					<br /> One research paper propose a Networked Virtual Environments
+					(NVE) P2P system that is optimized for massive fast-paced action
+					games while focusing on scalability and responsiveness of the
+					system. It uses a pure P2P-network with a dynamic connection
+					scheme. Instead of dividing the virtual world into regions of fixed
+					size (matrix solution), each user locally decides to which other
+					users he directly connects. So, it is based on the design of the
+					AOI (Area Of Interest) that is not distance-based (like a circle
+					with a given radius) but based on the number of nearest neighbors
+					(given number of connections). It use this paradim because of human
+					perception to only focus on a limited number of objects at one
+					time. Also by using a publish/subscribe system ( instead of
+					sender-oriented message distribution approach ) for message
+					exchange, an optimal coverage of users’ interests in the NVE and
+					established connections. To ensure global connectivity of the
+					network, a special kind of connections was used which is called
+					"NetConnectors". These NetConnectors prevent a partitioning of the
+					network by connecting every user to another user in at least each
+					of the virtual world’s cardinal directions. It uses a Geocast
+					algorithm allows for sending messages to an arbitrary set of users
+					based on their positions in the NVE. At the end of the paper, it
+					provided statistics of simulated game by using these techniques.
+					</p>
+					<strong>References</strong>
+					<ul>
+						<li>
+							<h6>Hybrid Peer-to-Peer Solution for MMORPGs</h6>
+							<p>
+								<small>a thesis by Frode Voll Aasen &amp; Tom-Christian
+									Bjørlo Johannessen </small>
+							</p>
+						</li>
+						<li>
+							<h6>A scalable Peer-to-Peer-overlay for real-time massively
+								multiplayer online games</h6>
+							<p>
+								<small>by Philip Mildner, Tonio Triebel, Stephan Kopf,
+									Wolfgang Effelsberg </small>
+							</p>
+						</li>
+					</ul>
+				</div>
+				</section>
+
+				<!-- Decentralized C/S overview
+				========================================= -->
+				<section id="decentralizedCS">
+				<div class="page-header">
+					<h2>
+						Decentralized Client/Server Architecture <small>Overview</small>
+					</h2>
+					<p>Decentralized client-server architecture is the most popular
+						architectures used in MMOGs.Clients connect to servers,and servers
+						connect to each other. The inter serve communication is like a
+						peer to peer network. This approach helps to have a good
+						transparency as a distributed system. If one server fails, the
+						clients will not know about it, as there are many servers which
+						will take care of the fault tolerance of the system. So, the
+						developers have to come up with efficient architectures and
+						algorithms to handle server to server communication. Since it is
+						not centralized, the risk of single point of failure is
+						non-existing. Colyseus , a distributed architecture for online
+						multi player games is an example of such a decentralized
+						client-server architecture. Developers can use zoning, instancing
+						and replication techniques to enhance the efficiency of this kind
+						of systems.</p>
+				</div>
+				</section>
+
+				<!-- Project Documentation overview
+        ========================================= -->
+				<section id="overview">
+				<div class="page-header">
+					<h2>Project Documentation</h2>
+					<p>As the project progress, we will create documentation on
+						academic papers and presentation slides related to our project.
+						All the documentations will be in PDF format.</p>
+					<a
+						href="res/FYP:Introdution to Distributed Coordination for MMOG.pdf">Introductory
+						slides</a>
+				</div>
+				</section>
+
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Footer
+================================================== -->
+	<div class="footer">
+		<div class="container">
+			<p>
+				This is an undergraduate project of <a
+					href="http://www.mrt.ac.lk/web/">University of Moratuwa</a>.
+			</p>
+			<p>
+				The Initial Idea Proposer and Mentor <a
+					href="http://twitter.com/srinath_perera" target="_blank">@srinath_perera</a>
+				.
+			</p>
+			<p>
+				Research, design and build by <a
+					href="http://twitter.com/gihanchanuka">@gihanchanuka</a>, <a>@dileepa</a>,
+				<a>@amila</a> and <a>@denuwanthi</a>; the students of Department of
+				Computer Science &amp; Engineering.
+			</p>
+			<p>
+				Code licensed under <a
+					href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache
+					License v2.0</a>.
+			</p>
+			<ul class="footer-links">
+				<li><a href="blog.html">Blog</a></li>
+				<li class="muted">&middot;</li>
+				<li><a
+					href="https://github.com/gihankarunarathne/DocBook-xsl-mobile-decouple/issues?state=open">Issues</a></li>
+				<li class="muted">&middot;</li>
+				<li><a
+					href="https://github.com/gihankarunarathne/DocBook-xsl-mobile-decouple/commits/master">Commits</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- javascripts -->
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+	<script src="js/google-code-prettify/prettify.js"></script>
+	<script src="js/application.js"></script>
+</body>
+</html>

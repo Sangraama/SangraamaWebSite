@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>සංග්‍රාම - Distributed Coordination Architecture for
+	MMOGs</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="css/docs.css" rel="stylesheet">
+<link href="js/google-code-prettify/prettify.css" rel="stylesheet">
+<link>
+</head>
+<body data-spy="scroll" data-target=".bs-docs-sidebar">
+	<!-- Navigation Bar
+     ========================== -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="brand" href="./index.html"> සංග්‍රාම </a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class="active divider-vertical"><a href="./index.html">Home</a></li>
+						<li class="dropdown"><a data-toggle="dropdown"
+							class="dropdown-toggle" href="./wiki.html">Wiki <b
+								class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="./documentation.html#p2p">Peer-to-Peer</a></li>
+								<li><a href="./documentation.html#decentralizedCS">Decentralized
+										Client/Server</a></li>
+								<li class="divider"></li>
+								<li><a href="./documentation.html"> Documentation </a></li>
+							</ul></li>
+						<li class="divider-vertical"><a href="./blog.html"> Blog
+						</a></li>
+						<li class="divider-vertical"><a href="./resource.html">
+								Resources </a></li>
+						<li class="divider-vertical"><a href="./download.html">
+								Download</a></li>
+						<li class="divider-vertical"><a href="./publication.html">
+								Publication </a></li>
+						<li class="divider-vertical"><a href="./community.html">
+								Community </a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Subhead
+================================================== -->
+	<header class="jumbotron subhead">
+	<div class="container">
+		<h1>
+			<em> සංග්‍රාම </em>
+		</h1>
+		<p class="lead">Place for Write, Read, Think and Argue
+	</div>
+	</header>
+
+	<!-- community container
+================================================== -->
+	<div class="container">
+
+		<div class="row">
+			<div class="span3 bs-docs-sidebar">
+				<ul class="nav nav-list bs-docs-sidenav">
+					<li><a href="#overview"><i class="icon-chevron-right"></i>
+							Initial Project Proposal</a></li>
+				</ul>
+			</div>
+			<div class="span9">
+				<!-- Overview about 
+      =========================================== -->
+				<section id="overview">
+				<div class="page-header">
+					<h2>Initial Project Proposal of "Sangraama"</h2>
+					<p class="text-center">Dept. of Computer Science & Engineering,
+						University of Moratuwa</p>
+					<h4 class="text-center">Sangraama</h4>
+					<h5 class="text-center">Distributed Coordination Architecture
+						for MMOGs</h5>
+					<h6 class="text-center">Project Supervisors</h6>
+					<p class="text-center">Dr. Srinath Perera & Ms.Vishaka
+						Nanayakkara</p>
+					<h6 class="text-center">Project Members</h6>
+					<p class="text-center">Chandima Dileepa Rajaguru, Gihan
+						Karunarathne, Amila Dissanayake, Denuwanthi De Silva</p>
+					<br />
+					<p class="text-center">12/03/2013</p>
+					<br />
+					<h5>1. Brief Idea</h5>
+					<p>This project is on implementing improved/combined
+						distributed coordination architecture for MMOGs (Massively
+						Multiplayer Online Games).</p>
+					<h5>2. Introduction</h5>
+					<p>Massively Multiplayer Online Games have become very popular
+						nowadays. Main facts about MMOGs are thousands of concurrent
+						players and huge game world. The ‘Distributed’ aspect of these
+						games is an interesting area for game developers. There are
+						specific challenges in developing MMOGs. Effect of latency,
+						performance, security and game cheating are some of the key
+						challenges which should be addressed in MMOGs development.</p>
+					<p>There are several architectures used in MMOGs. Basic
+						architectures in use are client-server and peer-to-peer.
+						Client-Server architecture is more popular due to the ease of
+						implementing. There are separate architectures to handle the
+						‘Distributed’ nature of these games too. Matrix, Colyseus, are
+						some implementations done to overcome key challenges in MMOG.</p>
+					<p>Examples:</p>
+					<ul>
+						<li>Matrix: Unique portions of the MMOG's map are assigned to
+							different servers. There is one game server and one Matrix server
+							associated with that unique region. Game server handles the game
+							logic. If an event takes place in an intersected region, the
+							Matrix server sends updates to the servers. Matrix Coordinator
+							server keeps computing and updating the intersected regions in
+							Matrix servers.[2]</li>
+						<li>Colyseus: Distributed architecture for interactive
+							multiplayer games designed to achieve scalable and efficient
+							state and logic partitioning that enables reasonably consistent,
+							low-latency game-play in a widely distributed environment with no
+							centralized management.[3]</li>
+					</ul>
+					<p>Game State distribution is mostly handled using zoning (game
+						world partitioning), instancing and replication (keeping duplicate
+						objects in nodes and updating them). Sometimes, a combination of
+						those methods is also used. It is all about finding an efficient
+						distributed architecture.</p>
+					<p>We try to provide the developers the chance to experiment on
+						developing games using different algorithms and architectures.
+						Furthermore, we hope to provide performance analysis on different
+						architectures and introduce optimal architectures.</p>
+					<p>During our project we focus on learning about the
+						architecture already in use in MMOGs, and implement some of them
+						that look promising. That will give us much better understanding
+						about algorithms in use, and then we can try to improve/ combine
+						those algorithms. There are lots of room to improve, specially
+						learning from parallel programming paradigms.</p>
+					<h5>3. Importance of the project</h5>
+					<p>Through this project, we implement few promising
+						architectures and evaluate key strengths and weaknesses of those
+						architectures. The results of the observations will be useful for
+						the future MMOG implementations which are more scalable, strong in
+						performance and fault tolerant. One of the major outcomes of this
+						project is an open source framework for the game developers that
+						give an interface to develop similar MMOGs. By using this
+						framework, developers do not have to bother about developing the
+						lower level of the distributed coordination in MMOGs.</p>
+					<h5>4. Project Objectives</h5>
+					<ul>
+						<li>Carry out literature survey on different architectures of
+							MMOGs. Compare and contrast the identified architectures of
+							MMOGs.</li>
+						<li>Implement few classical architectures and evaluate them
+							in perspective of scalability and performance.</li>
+						<li>Optimize the implemented architectures and come up with a
+							framework to handle the distributed coordination of MMOGs.</li>
+					</ul>
+					<h5>5. Scope</h5>
+					<p>Project Scope is on distributed coordination architecture
+						designed for MMOGs. In this project our initial focus is on the
+						basic and classical architectures used to build MMOGs. We will
+						research about the basic qualities of existing architectures such
+						as performance and scalability. Then we will continue our research
+						to optimize those classical architectures or design new
+						architectures to support MMOGs. We will implement one or few
+						architecture and evaluate the functionality in the perspective of
+						scalability, performance and other qualities. We hope to research
+						about existing algorithms used to handle distributed coordination
+						and use them in more beneficial way to face the challenges in
+						MMOGs development.</p>
+					<h5>6. Deliverables</h5>
+					<ul>
+						<li>Initial Project Proposal</li>
+						<li>Project Website</li>
+						<li>Project Report</li>
+						<li>System Requirements Specification</li>
+						<li>Two Videos</li>
+						<li>Project Implementation (Framework for distributed
+							coordination of MMOGs)</li>
+						<li>Research Publications</li>
+					</ul>
+					<h5>7. Assumptions/Limitations</h5>
+					<p>MMOG architectures have both client-server and P2P (Peer to
+						Peer) architectures. Even Though Client-Server based
+						implementations can be found easily, P2P based implementations are
+						quite rare and the algorithms used in are complex. There are no
+						good implementations for DHT (Distributed Hash Table) in P2P. It
+						takes approximately four years for a MMOG to be developed.[2]</p>
+					<p>The basic approach in most MMOGs is to divide the game world
+						into regions. We have to focus on optimizing that approach, as it
+						would be rather time consuming to come up with a completely new
+						approach. Nevertheless, we will not abandon the chance for a
+						completely new idea too.</p>
+
+				</div>
+				</section>
+
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Footer
+================================================== -->
+	<div class="footer">
+		<div class="container">
+			<p>
+				This is an undergraduate project of <a
+					href="http://www.mrt.ac.lk/web/">University of Moratuwa</a>.
+			</p>
+			<p>
+				The Initial Idea Proposer and Mentor <a
+					href="http://twitter.com/srinath_perera" target="_blank">@srinath_perera</a>
+				.
+			</p>
+			<p>
+				Research, design and build by <a
+					href="http://twitter.com/gihanchanuka">@gihanchanuka</a>, <a>@dileepa</a>,
+				<a>@amila</a> and <a>@denuwanthi</a>; the students of Department of
+				Computer Science &amp; Engineering.
+			</p>
+			<p>
+				Code licensed under <a
+					href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache
+					License v2.0</a>.
+			</p>
+			<ul class="footer-links">
+				<li><a href="blog.html">Blog</a></li>
+				<li class="muted">&middot;</li>
+				<li><a
+					href="https://github.com/gihankarunarathne/DocBook-xsl-mobile-decouple/issues?state=open">Issues</a></li>
+				<li class="muted">&middot;</li>
+				<li><a
+					href="https://github.com/gihankarunarathne/DocBook-xsl-mobile-decouple/commits/master">Commits</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- javascripts -->
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+	<script src="js/google-code-prettify/prettify.js"></script>
+	<script src="js/application.js"></script>
+</body>
+</html>
