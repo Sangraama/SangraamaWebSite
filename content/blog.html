@@ -11,8 +11,9 @@
 <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
 <link href="../css/docs.css" rel="stylesheet">
+<link href="../css/desert.css" rel="stylesheet">
+<!-- <link href="../css/sunburst.css" rel="stylesheet"> -->
 <link href="../js/google-code-prettify/prettify.css" rel="stylesheet">
-<link>
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
 	<!-- Navigation Bar
@@ -75,11 +76,12 @@
 				<ul class="nav nav-list bs-docs-sidenav">
 					<li><a href="#overview"><i class="icon-chevron-right"></i>
 							Initial Project Proposal</a></li>
+					<li><a href="#httpservletinit"><i class="icon-chevron-right"></i>
+					HttpServlet init Method</a></li>
 				</ul>
 			</div>
 			<div class="span9">
-				<!-- Overview about 
-      =========================================== -->
+				<!-- Overview about ===== -->
 				<section id="overview">
 				<div class="page-header">
 					<h2>Initial Project Proposal of "Sangraama"</h2>
@@ -201,8 +203,115 @@
 						would be rather time consuming to come up with a completely new
 						approach. Nevertheless, we will not abandon the chance for a
 						completely new idea too.</p>
-
 				</div>
+				</section>
+				
+				<!-- Blog post by Denuwanthi -->
+				<section id="httpservletinit">
+				<div class="page-header">
+                <h2>HttpServlet init(ServletConfig) Method</h2>
+                <p>When using HttpServlets, most people get confused of the usage of
+                the 'init' method. There are two 'init' methods, that are associated
+                with servlets: init() and init(ServletConfig). When we want to do some
+                startup work, in the servlet we override 'init(ServletConfig)' method,
+                in our servlet class, not the no-argument init() method. The no-argument
+                init method is called from inside the init(ServletConfig) method itself.</p>
+                <p>Let's go through an example, which prints out 'HelloWorld!!', with the tomcat server startup.</p>
+                
+<pre class="prettyprint lang-java">
+package com.example.servlets;
+
+import java.io.IOException;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class InitServlet
+ */
+public class InitServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public InitServlet() {
+        super();
+    }
+
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        System.out.println("Hello World!!");
+    }
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {    
+    }
+
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    protected void doPost(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {      
+    }
+}
+</pre>
+<p>In the above code we can see, the overridden init(ServletConfig) method, first
+calls to its' super class init method. After that, we can insert any code we need. Here I inserted</p>
+<pre class="prettyprint">System.out.println("Hello World!!");</pre>
+<p>We can start the 'tomcat' server and see, the result as below</p>
+<pre class="prettyprint">
+May 7, 2013 10:16:11 PM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk-amd64/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+May 7, 2013 10:16:11 PM org.apache.tomcat.util.digester.SetPropertiesRule begin
+WARNING: [SetPropertiesRule]{Server/Service/Engine/Host/Context} Setting property 'source' to 'org.eclipse.jst.jee.server:ServletInit' did not find a matching property.
+May 7, 2013 10:16:11 PM org.apache.coyote.http11.Http11Protocol init
+INFO: Initializing Coyote HTTP/1.1 on http-8080
+May 7, 2013 10:16:11 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 552 ms
+May 7, 2013 10:16:11 PM org.apache.catalina.core.StandardService start
+INFO: Starting service Catalina
+May 7, 2013 10:16:11 PM org.apache.catalina.core.StandardEngine start
+INFO: Starting Servlet Engine: Apache Tomcat/6.0.29
+<strong>Hello World!!</strong>
+May 7, 2013 10:16:11 PM org.apache.coyote.http11.Http11Protocol start
+INFO: Starting Coyote HTTP/1.1 on http-8080
+May 7, 2013 10:16:11 PM org.apache.jk.common.ChannelSocket init
+INFO: JK: ajp13 listening on /0.0.0.0:8009
+May 7, 2013 10:16:11 PM org.apache.jk.server.JkMain start
+INFO: Jk running ID=0 time=0/13  config=null
+May 7, 2013 10:16:11 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 267 ms
+</pre>
+<p>We can see, 'Hello World!!' is printed with the server startup, not after server start.
+Thus, we can use this init method, to do tasks like creating pre database connections.</p>
+<p>Important Fact: Make sure you add, the servlet you created to the web description file
+(web.xml) with the  <strong>load-on-startup</strong>  tag. The init(ServletConfig) method,
+starts with the tomcat server, when this tag is mentioned in your web.xml.</p>
+<p>For the above servelt it is like,</p>
+<pre class="prettyprint lang-js">
+&lt;servlet&gt;
+    &lt;description&gt;&lt;/description&gt;
+    &lt;display-name&gt;InitServlet&lt;/display-name&gt;
+    &lt;servlet-name&gt;InitServlet&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;com.example.servlets.InitServlet&lt;/servlet-class&gt;
+    &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
+  &lt;/servlet&gt;
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;InitServlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/InitServlet&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+</pre>
+<p>This tag, indicates, the order which the servlets will be initialized. I used
+the value '2' as, I have another servelt to start before this, with the value '1'.</p>
+                </div>
 				</section>
 
 			</div>
@@ -249,7 +358,6 @@
 	<!-- javascripts -->
 	<script src="../js/jquery.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
-
 	<script src="../js/google-code-prettify/prettify.js"></script>
 	<script src="../js/application.js"></script>
 </body>
